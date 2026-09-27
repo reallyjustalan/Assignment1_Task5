@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Ubuntu 26.04 uutils 0.8.0 date +%s%3N breaks Nextflow's millisecond timer.
+# Prefer the already-installed GNU implementation, without altering /usr/bin/date.
+if [[ -x /usr/bin/gnudate ]]; then
+    exec /usr/bin/gnudate "$@"
+fi
+exec /usr/bin/date "$@"
